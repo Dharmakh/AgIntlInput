@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="margin: 50px">
+    <h3>Test International Telephone Input (Template Form)</h3>
+    <div class="mb-2">
+      <i><b style="color: orange">And yes, flags are not visible here. It's a Stackblitz only issue.</b></i>
+    </div>
+    <br>
+    <div class="mb-2">
+      <button (click)="changePreferredCountries()">Change Preferred Countries</button>
+    </div>
+    <div class="mb-2">
+      <input type="checkbox" [(ngModel)]="separateDialCode">
+      <label>&nbsp;Separate Dial Code?</label>
+    </div>
+    <!-- <form #f="ngForm" name="form" (ngSubmit)=submit(f)> -->
+      <div class="mb-2">
+        <ngx-intl-tel-input 
+          [cssClass]="'custom'" 
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true" 
+          [enablePlaceholder]="true" 
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+          [selectFirstCountry]="false" 
+          [selectedCountryISO]="CountryISO.India"
+          [maxLength]="15" 
+          [tooltipField]="TooltipLabel.Name" 
+          [phoneValidation]="true" 
+          [separateDialCode]="separateDialCode"
+          name="phone" [(ngModel)]="phone" 
+          (change)="InputChange(phonen)" #phonen="ngModel" >
+        </ngx-intl-tel-input>
+      </div>
+      <div class="mb-2">
+        <!-- <button (click)="f.reset()">Reset</button> -->
+
+        <!-- <button type="submit">Submit</button> -->
+        <button (click)="btnClick()">Submit</button>
+      </div>
+    <!-- </form> -->
+    <br>
+    <div *ngIf="phone"><strong>Is input valid:</strong> <pre>{{ !phonen.invalid }}</pre></div>
+    <!-- <div><strong>Is input touched:</strong> <pre>{{ f.form.controls['phone'].touched }}</pre></div> -->
+    <!-- <div><strong>Is form valid:</strong> <pre>{{ f.form.valid }}</pre></div> -->
+    <div><strong>Form value:</strong> <pre>{{ phone | json}}</pre></div>
+    <!-- <div><strong>Form validation errors:</strong> <pre>{{ f.form.controls['phone'].errors | json }}</pre></div> -->
+  </div>
